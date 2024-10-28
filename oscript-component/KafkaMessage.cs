@@ -14,22 +14,22 @@ namespace oscriptcomponent
     internal class KafkaMessage : AutoContext<KafkaMessage>
     {
         /// <summary>
-		/// Ключ.
+		/// Ключ сообщения.
 		/// </summary>
 		[ContextProperty("Ключ")]
-        public string Key { get; set; }
+        public string Key { get; }
 
         /// <summary>
-		/// Значение.
+		/// Значение сообщения.
 		/// </summary>
 		[ContextProperty("Значение")]
-        public string Value { get; set; }
+        public string Value { get; }
 
         /// <summary>
-		/// Заголовки.
+		/// Заголовки сообщения.
 		/// </summary>
 		[ContextProperty("Заголовки")]
-        public MapImpl Headers { get; set; }
+        public MapImpl Headers { get; }
 
         public KafkaMessage(Message<string, string> message)
         {
@@ -54,10 +54,10 @@ namespace oscriptcomponent
         /// <summary>
 		/// По умолчанию
 		/// </summary>
-        /// <param name="value">Значение</param>
-        /// <param name="key">Ключ</param>
-        /// <param name="headers">Заголовки</param>
-		/// <returns>СообщениеКафка</returns>
+        /// <param name="value">Значение сообщения</param>
+        /// <param name="key">Ключ сообщения</param>
+        /// <param name="headers">Заголовки сообщения</param>
+		/// <returns></returns>
         [ScriptConstructor]
         public static KafkaMessage Constructor(string value, string key = "", MapImpl? headers = null)
         {

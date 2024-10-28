@@ -16,7 +16,7 @@ namespace oscriptcomponent
         private readonly IProducer<string, string> _confluentProducer;
 
         /// <summary>
-		/// СписокБрокеров.
+		/// Список брокеров.
 		/// </summary>
 		[ContextProperty("СписокБрокеров")]
         public string BrokerList { get; }
@@ -34,8 +34,8 @@ namespace oscriptcomponent
         /// <summary>
 		/// По умолчанию
 		/// </summary>
-        /// <param name="brokerList">СписокБрокеров</param>
-		/// <returns>КафкаПродюсер</returns>
+        /// <param name="brokerList">Список брокеров</param>
+		/// <returns></returns>
         [ScriptConstructor]
         public static KafkaProducer Constructor(string brokerList = "")
         {
@@ -46,9 +46,9 @@ namespace oscriptcomponent
         /// Отправить сообщение в топик 
         /// </summary>
         /// <param name="topic">Топик</param>
-        /// <param name="key">Ключ</param>
+        /// <param name="key">Ключ сообщения</param>
         /// <param name="message">Сообщение</param>
-        /// <param name="headers">Заголовки</param>
+        /// <param name="headers">Заголовки сообщения</param>
         [ContextMethod("Отправить", "Send")]
         public void Produce(string topic, string key, string message, MapImpl? headers = null)
         {

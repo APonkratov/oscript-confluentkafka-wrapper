@@ -5,9 +5,9 @@ using ScriptEngine.Machine.Contexts;
 namespace oscriptcomponent
 {
     /// <summary>
-	/// Класс РезультатЧтенияКафка. Служит для чтения сообщений из топиков Kafka.
+	/// Класс РезультатЧтенияСообщения. Служит для чтения сообщений из топиков Kafka.
 	/// </summary>
-    [ContextClass("РезультатЧтенияКафка", "KafkaConsumeResult")]
+    [ContextClass("РезультатЧтенияСообщения", "KafkaConsumeResult")]
     internal class KafkaConsumeResult : AutoContext<KafkaConsumeResult>
     {
         /// <summary>
@@ -29,7 +29,7 @@ namespace oscriptcomponent
         public int Offset { get; }
 
         /// <summary>
-		/// ЭтоКонецРаздела.
+		/// ЭтоКонецРаздела. Признак конца раздела
 		/// </summary>
 		[ContextProperty("ЭтоКонецРаздела")]
         public bool IsPartitionEof { get; }

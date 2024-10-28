@@ -15,13 +15,13 @@ namespace oscriptcomponent
         private readonly IConsumer<string, string> _confluentConsumer;
 
         /// <summary>
-		/// СписокБрокеров.
+		/// Список брокеров.
 		/// </summary>
 		[ContextProperty("СписокБрокеров")]
         public string BrokerList { get; }
 
         /// <summary>
-        /// ГруппаПодписчиков.
+        /// Группа подписчиков.
         /// </summary>
         [ContextProperty("ГруппаПодписчиков")]
         public string GroupId { get; set; }
@@ -36,7 +36,7 @@ namespace oscriptcomponent
         {
             BrokerList = brokerList;
             GroupId = groupId;
-            Timeout = 3000;
+            Timeout = 5000;
 
             var configProperties = new Dictionary<string, string>
             {
@@ -63,7 +63,7 @@ namespace oscriptcomponent
 		/// </summary>
         /// <param name="brokerList">Список брокеров</param>
         /// <param name="groupId">Группа подписчиков</param>
-        /// <param name="properties">Параметры</param>
+        /// <param name="properties">Параметры. Параметры для конфигурирования консумера</param>
 		/// <returns>КафкаКонсумер</returns>
         [ScriptConstructor]
         public static KafkaConsumer Constructor(string brokerList, string groupId, MapImpl? properties = null)
@@ -72,10 +72,9 @@ namespace oscriptcomponent
         }
         
         /// <summary>
-		/// УстановитьТаймаут
+		/// Установить таймаут ожидания сообщения
 		/// </summary>
-        /// <param name="timeout">Таймаут</param>
-		/// <returns>КафкаКонсумер</returns>
+        /// <param name="timeout">Таймаут. Таймаут ожидания в милисекундах</param>
 		[ContextMethod("УстановитьТаймаут", "SetTimeout")]
         public void SetTimeout(int timeout)
         {
@@ -83,9 +82,9 @@ namespace oscriptcomponent
         }
 
         /// <summary>
-        /// Подписаться 
+        /// Подписаться на топик 
         /// </summary>
-        /// <param name="topic">Топик</param>
+        /// <param name="topic">Топик. Имя топика Kafka</param>
         [ContextMethod("Подписаться", "Subscribe")]
         public void Subscribe(string topic)
         {
@@ -95,11 +94,12 @@ namespace oscriptcomponent
         /// <summary>
         /// Прочитать 
         /// </summary>
+        /// <returns>РезультатЧтенияСообщения. Результат чтения сообщения или Неопределено, если не удалось прочитать</returns>
         [ContextMethod("Прочитать", "Consume")]
-        public KafkaConsumeResult Consume()
+        public KafkaConsumeResult? Consume()
         {
-            var result = _confluentConsumer.Consume(Timeout);
-            return new KafkaConsumeResult(result);
+            var confluentConsumeResult = _confluentConsumer.Consume(Timeout);
+            return confluentConsumeResult == null ? null : new KafkaConsumeResult(confluentConsumeResult);
         }
 
         /// <summary>
@@ -111,7 +111,8 @@ namespace oscriptcomponent
         [ContextMethod("ЗафиксироватьСмещение", "Commit")]
         public void Commit(string topic, int partition, int offset)
         {
-            var confluentTopicPartitionOffsets = new TopicPartitionOffset[] { new(topic, new Partition(partition), new Offset(offset)) };
+            var newOffset = offset += 1;
+            var confluentTopicPartitionOffsets = new TopicPartitionOffset[] { new(topic, new Partition(partition), new Offset(newOffset)) };
             _confluentConsumer.Commit(confluentTopicPartitionOffsets);
         }
     }
