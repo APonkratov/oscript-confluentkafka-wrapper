@@ -38,13 +38,13 @@ configuration: Release
 after_build:
 - cmd: >-
 
-    del %main_project%\bin\%CONFIGURATION%\netstandard2.1\*.pdb
+    del %main_project%\bin\%CONFIGURATION%\net6.0\*.pdb
 
     mkdir bin
 
     OneScriptDocumenter.exe json bin\syntaxHelp.json %main_project%\bin\%CONFIGURATION%\net6.0\%main_project%.dll
     
-    del %main_project%\bin\%CONFIGURATION%\ScriptEngine*.* %main_project%\bin\%CONFIGURATION%\netstandard2.1\NewtonSoft*.* %main_project%\bin\%CONFIGURATION%\netstandard2.1\DotNetZip*.*
+    del %main_project%\bin\%CONFIGURATION%\ScriptEngine*.* %main_project%\bin\%CONFIGURATION%\net6.0\NewtonSoft*.* %main_project%\bin\%CONFIGURATION%\net6.0\DotNetZip*.*
     
     xcopy %main_project%\bin\%CONFIGURATION%\* bin\
     
