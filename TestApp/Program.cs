@@ -19,7 +19,7 @@ namespace TestApp
         static readonly string SCRIPT = @"
                 // Отладочный скрипт
                 // в котором уже подключена наша компонента
-                КафкаПродюсер = Новый КафкаПродюсер(""events-bus-kafka-bootstrap-1s.k8s.qa.lamoda.tech:9094"");
+                КафкаПродюсер = Новый КафкаПродюсер(""my-exapmle-host.local"");
                 КафкаПродюсер.Отправить(""my-example-topic"", ""my-example-key"", ""my-important-message"");
 
                 Заголовки = Новый Соответствие;
@@ -34,7 +34,7 @@ namespace TestApp
 	            Параметры.Вставить(""enable.auto.offset.store"", ""false""); 
 	            Параметры.Вставить(""enable.partition.eof"", ""true"");
                 
-                КафкаКонсумер = Новый КафкаКонсумер(""events-bus-kafka-bootstrap-1s.k8s.qa.lamoda.tech:9094"", ""my-group-id"", Параметры);
+                КафкаКонсумер = Новый КафкаКонсумер(""my-exapmle-host.local"", ""my-group-id"", Параметры);
                 КафкаКонсумер.Подписаться(""my-example-topic"");
                 РезультатЧтения = КафкаКонсумер.Прочитать();
 
