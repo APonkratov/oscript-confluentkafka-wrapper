@@ -1,5 +1,7 @@
 # OneScript Confluent.Kafka wrapper
 
+[![Build status](https://ci.appveyor.com/api/projects/status/04fdarj9gfxw3il1/branch/main?svg=true)](https://ci.appveyor.com/project/APonkratov/oscript-confluentkafka-wrapper/branch/main)
+
 ## Поддержка Kafka для OneScript
 
 ## Установка
