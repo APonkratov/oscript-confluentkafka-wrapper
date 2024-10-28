@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+	<Configurations>Debug;Release</Configurations>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>oscript-kafka-lib</Title>
+    <Authors />
+    <Description>OneScript Confluent Kafka wrapper</Description>
+    <Copyright>APonkratov</Copyright>
+    <Company />
+    <Product />
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+  </PropertyGroup>
+	
+  <ItemGroup>
+    <PackageReference Include="Confluent.Kafka" Version="2.6.0" />
+    <PackageReference Include="OneScript" Version="2.0.0-rc4" />
+    <PackageReference Include="OneScript.StandardLibrary" Version="2.0.0-rc4" />
+  </ItemGroup>
+
+</Project>
