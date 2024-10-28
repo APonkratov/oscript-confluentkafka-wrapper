@@ -34,7 +34,9 @@ install:
 build:
   verbosity: minimal
 configuration: Release
-
+test_script:
+    - cmd: nunit3-console NUnitTests\bin\%CONFIGURATION%\net6.0\NUnitTests.dll --result=myresults.xml;format=AppVeyor
+      
 after_build:
 - cmd: >-
 
