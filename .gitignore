@@ -1,0 +1,9 @@
+﻿\.idea/
+
+\.vs/
+
+*.ospx
+
+bin/
+obj/
+packages/
